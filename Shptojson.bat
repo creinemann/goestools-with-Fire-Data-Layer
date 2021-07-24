@@ -6,7 +6,7 @@
 ::	WINSCP
 ::	GOESTOOLS
 
-:: Change Directory to working folder
+:: Change Directory to your working folder
 
 	cd C:\USERDIRECTORY
 	
