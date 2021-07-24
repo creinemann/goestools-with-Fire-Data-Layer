@@ -10,16 +10,15 @@ These scripts allows goestools to use the built in map handlers to apply fire da
 FIRMS Fire Information for Resource Management System US / Canada: https://firms.modaps.eosdis.nasa.gov/ 
 
 I have a windows task scheduler created to run the batch file in this repository every 12 hours then convert that data
-to a format that can be processed by goestools. I then uploads the latest fire data json file to the pi I use to run goestools.
+to a format that can be processed by goestools. It then uploads the latest fire data json file to the pi I use to run goestools.
 
-Within goestools I have a custom process that reads the imagery, applies geo political boundaries, then applies the fire hotspot data.
+Within goestools I have a custom process that reads the imagery, applies geo-political boundaries, then applies the fire hotspot data.
 Since I do not intend to run the process all the time, I use the command as needed or seasonally.
 
 Goestools by default utilizes a function that allows the software to apply map data from 
 Natural Earth. Originals from https://www.naturalearthdata.com/.
-The files here are medium scale (1:50m).
 
-However, the files needed to apply geo spatial data from FIRMS is of 
+However, the files needed to apply geo-spatial data from FIRMS is of 
 a different format. The geo spatial data available for public download is generated in a points based GIS geometry.
 Whereas goestools processes with a polygon, or multipolygon geometry.
 
@@ -103,7 +102,7 @@ I run the batch automatically by calling it from within windows using the Window
 
 The script can also be run as needed by running the batch file.
 
-## New Goestools Process
+## Creating the New Goestools Process
 Instead of editing goesr-goesproc.conf file within goestools I chose to write a shourt handler that, again, can be run as needed (during fire season).
 
 Create a .conf  file using a text editor such as Notepad or better yet Notepad++.  This process creates imagery using bands 02 and 13
@@ -156,8 +155,7 @@ Then use the command
 ```
 goesproc -c goesfireproc.conf -m packet --subscribe tcp://127.0.0.1:5004 --out /home/pi/goes
 ```
-
-On the pi to start teh process.
+On the pi to start the process.
 
 ## Future Ideas
 
@@ -174,10 +172,22 @@ Thanks to Dr. Michele Tobias Geospatial Data Specialist, UC Davis Library with a
 
 
 ![GOES16_FD_FCFIREMAP_20210723T180023Z](https://user-images.githubusercontent.com/47005123/126876022-823ac295-2e06-487e-bfe0-670df0c906c2.jpg)
+
 Fires in Onterio and Quebec Canada
 
+
+
 ![GOES17_M1_FCFIREMAP_20210723T182224Z](https://user-images.githubusercontent.com/47005123/126876118-990af964-403b-4353-be27-c999a1f9b00c.jpg)
+
 Fires in Western USA  A lot of smoke from the Bootleg fire 7.24.2021 On July 19th, the Log and Bootleg Fires merged into one fire.
 
 
+## Other Satellites
 
+I have tested this with both GK-2A and Himawari 8 and it appears to be functional
+![Himawari8_FD_VS_20210724T025100Z](https://user-images.githubusercontent.com/47005123/126876857-5ef52f22-7fa3-44da-b539-cdc500654c10.jpg)
+
+Himawari 8 with MODIS fire data
+
+## Disclaimer
+## DO NOT use this information to make decisions relating to active fires.
