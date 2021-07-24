@@ -1,7 +1,7 @@
 # Goestools with Fire Data Layer
 
 ![GOES16_FD_FCFIREMAP_20210724T150022Z](https://user-images.githubusercontent.com/47005123/126873911-82257340-8c32-4041-9788-48aaa7c0606a.jpg)
-Example fire data on South America
+Example fire data (orange dots) on areas of South America
 
 ## Scripts
 
