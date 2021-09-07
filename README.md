@@ -160,7 +160,42 @@ Then use the command
 ```
 goesproc -c goesfireproc.conf -m packet --subscribe tcp://127.0.0.1:5004 --out /home/pi/goes
 ```
-On the pi to start the process.
+on the pi to start the process.
+
+## Regional Settings
+If you do not want full global data you can substitute the following links for regional coverage (as shown on map).
+
+You need to update the script portion shown below with the new links and shape file names.
+```
+::Batch file to download, unzip, convert geospatial data to polygons, and upload to goestools
+
+	
+	powershell -Command Invoke-WebRequest https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Global_24h.zip -OutFile C:\USERDIRECTORY\global.zip
+	
+:: UNZIP THE ARCHIVE
+
+	powershell Expand-Archive C:\USERDIRECTORY\global.zip -DestinationPath C:\USERDIRECTORY -force
+	
+:: CONVERT THE SHAPEFILE MODIS_C6_1_Global_24h.shp TO fire.json
+
+	ogr2ogr -f "GeoJSON" -dialect SQLite -sql "select ST_Buffer(geometry,0.01) from MODIS_C6_1_Global_24h" fire.json MODIS_C6_1_Global_24h.shp
+```	
+## List of Regional Downloads
+```
+World--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Global_24h.zip
+Canada--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Canada_24h.zip
+Alaska--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Alaska_24h.zip
+USA (Conterminous) and Hawaii--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_USA_contiguous_and_Hawaii_24h.zip
+Central America--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Central_America_24h.zip
+South America--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_South_America_24h.zip
+Europe--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Europe_24h.zip
+North and Central Africa--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Northern_and_Central_Africa_24h.zip
+Southern Africa--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Southern_Africa_24h.zip
+Russia and Asia--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Russia_Asia_24h.zip
+South Asia--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_South_Asia_24h.zip
+South East Asia--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_SouthEast_Asia_24h.zip
+Australia and New Zealand--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Australia_NewZealand_24h.zip
+```
 
 ## Future Ideas
 
