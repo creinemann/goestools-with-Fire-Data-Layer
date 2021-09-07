@@ -9,6 +9,10 @@ These scripts allows goestools to use the built in map handlers to apply fire da
 
 FIRMS Fire Information for Resource Management System US / Canada: https://firms.modaps.eosdis.nasa.gov/ 
 
+*MODIS has a Spatial Resolution of 1 km x 1 km, while VIIRS has a Spatial Resolution of 375m x 375m, which results in more detail and coverage.
+The downside is that there is a lot more data to process. It works good on a regional scale, but globally the filesize is far too large for goestools to 
+process (1 Gb for VIIRS as compared to about 300Mb for MODIS) as such I am reccomending using MODIS data*
+
 I have a windows task scheduler created to run the batch file in this repository every 12 hours then convert that data
 to a format that can be processed by goestools. It then uploads the latest fire data json file to the pi I use to run goestools.
 
@@ -181,6 +185,8 @@ You need to update the script portion shown below with the new links and shape f
 	ogr2ogr -f "GeoJSON" -dialect SQLite -sql "select ST_Buffer(geometry,0.01) from MODIS_C6_1_Global_24h" fire.json MODIS_C6_1_Global_24h.shp
 ```	
 ## List of Regional Downloads
+![Regions_500px](https://user-images.githubusercontent.com/47005123/132413634-6d390853-c68a-4503-ace8-8ab43789eaa7.jpg)
+
 ```
 World--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Global_24h.zip
 Canada--https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Canada_24h.zip
