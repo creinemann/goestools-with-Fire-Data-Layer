@@ -38,6 +38,11 @@ System dependencies:
 Create a batch file using a text editor such as Notepad or better yet Notepad++
 with the following script, changing the directories to match you own:
 
+## Update with MODIS FIRMS file access 09/07/2021
+FIRMS has been overwhelmed with data access requests, and they have opened a mirror site to download data
+from, you can paste this address in the batch file below if you have issues downloading the data:
+ https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/shapes/zips/MODIS_C6_1_Global_24h.zip
+
 ``` shell
 ::Batch file to download, unzip, convert geospatial data to polygons, and upload to goestools
 ::  DEPENDECIES: 
