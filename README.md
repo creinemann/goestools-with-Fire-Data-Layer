@@ -237,3 +237,5 @@ Himawari 8 with MODIS fire data
 
 ## Disclaimer
 ## DO NOT use this information to make decisions relating to active fires.
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/C0C26TVRD)
